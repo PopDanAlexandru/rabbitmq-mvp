@@ -34,9 +34,10 @@ The Queue can be configured such that:
 * uses argument `x-message-ttl` which specifies how much time (_in milliseconds_) the message can stay in the queue, before is discarded.
 * uses argument `x-max-length` which specifies the maximum nr of messages that can be stored in the queue (_if queue is full, then new messages are rejected_).
 
-### Use-cases:
-* **background processing** (_queuing tasks_) => trigger reliable execution of a time-consuming task, and do not wait for completion. But is **reliable** because we can ensure that the message/order was received successfully by the consumer, so the process truly started. **Examples**: sending emails/notifications, generating invoices/reports.
-* **decouple microservices** => when we want to implement asynchronous communication between the same specific services (_Kafka uses topics and partitions, and is harder to route message to a specific service_).
+### Use-cases and advantages:
+* **Background processing** (_queuing tasks_) => trigger reliable execution of a time-consuming task that should be processed occasionally, and do not wait for completion  (_to deliver a message once, without the need to persist it_). But is **reliable** because we can ensure that the message/order was received successfully by the consumer, so the process truly started. **Examples**: sending emails/notifications, generating invoices/reports.
+* to **decouple microservices** => when we want to implement asynchronous communication between the same specific services and complex routing (_Kafka uses topics and partitions, and is harder to route message to a specific service_).
+* To configure messages that have higher priority, to be propagated faster through the queue. For example, when an issue occurs, and the message that triggers the fix must be executed faster. (_while Kafka does not allow priority_)
 
 ### Resources:
 * [Messaging with RabbitMQ](https://spring.io/guides/gs/messaging-rabbitmq/)
