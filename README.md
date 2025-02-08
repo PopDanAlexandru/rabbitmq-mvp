@@ -37,8 +37,8 @@ The Queue can be configured such that:
 * if the queue is full, then it can reject new messages or can move older messages into a dead-letter-queue.
 
 ### Use-cases and advantages:
-* **Background processing** (_queuing tasks_) => trigger reliable execution of a time-consuming task that should be processed occasionally, and do not wait for completion  (_to deliver a message once, without the need to persist it_). But is **reliable** because we can ensure that the message/order was received successfully by the consumer, so the process truly started (_while Kafka consumers uses the principle of first-come first-served_). **Examples**: sending emails/notifications, generating invoices/reports.
-* to **decouple microservices** => when we want to implement asynchronous communication between the same specific services and complex routing (_Kafka uses topics and partitions, and is harder to route message to a specific consumer_).
+* **Background processing** (_queuing tasks_) => trigger reliable execution of a time-consuming task that should be processed occasionally, and do not wait for completion  (_to deliver a message once, without the need to persist it_). But is **reliable** because we can ensure that the message/order was received successfully by the consumer, so the process truly started (_while Kafka consumers do not acknowledge the successful receival/processing of messages_). **Examples**: sending emails/notifications, generating invoices/reports.
+* to **decouple microservices** => when we want to implement asynchronous communication between the same specific services and complex routing (_Kafka consumers use the principle of first-come first-served, and uses topics and partitions, and is harder to route message to a specific consumer_).
 * To configure messages that have **higher priority**, to be propagated faster through the queue. For example, when an issue occurs, and the message that triggers the fix must be executed faster. (_while Kafka does not allow priority_)
 
 ### Resources:
